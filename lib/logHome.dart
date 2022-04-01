@@ -1,5 +1,6 @@
 import 'package:dapur_aja/home.dart';
 import 'package:dapur_aja/login.dart';
+import 'package:dapur_aja/verify_email_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,18 @@ class logHome extends StatelessWidget {
           final isUserVerified = user?.emailVerified ?? false;
           switch (snapshot.connectionState) {
             case ConnectionState.done:
+              if (user != null) {
+                if (user.emailVerified) {
+                  print('verified');
+                  print(user);
+                } else {
+                  return VerifyEmailView();
+                }
+              } else {
+                return LoginView();
+              }
+              return HomePage();
+
               // if (isUserVerified) {
               //   print('Verified user');
               //   return HomeMobile();

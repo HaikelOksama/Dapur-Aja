@@ -58,278 +58,283 @@ class _HomeMobileState extends State<HomeMobile> {
       super.dispose();
     }
 
-    return SafeArea(
-        child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Container(
-          padding: EdgeInsets.all(8.0),
-          height: 100,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Mau makan apa",
-                      style: TextStyle(fontSize: 32),
-                    ),
-                    Text(
-                      'Hari ini?',
-                      style:
-                          TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                child: CircleAvatar(
-                  minRadius: 50,
-                  backgroundColor: Colors.pink.shade50,
-                  child: Image.asset(
-                    'images/hat.png',
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 8.0,
-        ),
-        Center(
-          child: Container(
-            height: 240,
-            width: 350,
-            child: Card(
-              color: Color.fromARGB(255, 214, 123, 154),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-              ),
-              child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 6),
+    return Scaffold(
+      body: SafeArea(
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            padding: EdgeInsets.all(8.0),
+            height: 100,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0, top: 8.0),
-                            child: Text(
-                              "Menu spesial untuk",
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Text(
-                              time,
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.white),
-                            ),
-                          )
-                        ],
+                      Text(
+                        "Mau makan apa",
+                        style: TextStyle(fontSize: 32),
                       ),
-                      Scrollbar(
-                        isAlwaysShown: true,
-                        controller: _scrollbar,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(20),
-                                  bottom: Radius.circular(20))),
-                          height: 170,
-                          margin: EdgeInsets.only(top: 4.0),
-                          padding: EdgeInsets.fromLTRB(4, 4, 4, 0),
-                          child: ListView.builder(
-                            controller: _scrollbar,
-                            itemCount: timeCheck(),
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: ((context, index) {
-                              final Food food;
-                              if (timeNow() == 'Malam ini  🌙') {
-                                food = malam[index];
-                              } else if (timeNow() == 'Siang ini  🌞') {
-                                food = siang[index];
-                              } else {
-                                food = pagi[index];
-                              }
-                              return InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: ((context) => FoodView(
-                                                foods: food,
-                                              ))));
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        width: 200,
-                                        height: 120,
-                                        child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            child: Image.asset(
-                                              food.image ?? 'images/null.jpg',
-                                              fit: BoxFit.cover,
-                                            )),
-                                      ),
-                                      Text(food.name)
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }),
-                          ),
-                        ),
-                      ),
+                      Text(
+                        'Hari ini?',
+                        style: TextStyle(
+                            fontSize: 32, fontWeight: FontWeight.bold),
+                      )
                     ],
-                  )),
+                  ),
+                ),
+                Container(
+                  child: CircleAvatar(
+                    minRadius: 50,
+                    backgroundColor: Colors.pink.shade50,
+                    child: Image.asset(
+                      'images/hat.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-            color: Colors.teal.shade100,
+          SizedBox(
+            height: 8.0,
           ),
-          padding: EdgeInsets.symmetric(horizontal: 12.0),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Text(
-                  'Pilihan ',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+          Center(
+            child: Container(
+              height: 240,
+              width: 350,
+              child: Card(
+                color: Color.fromARGB(255, 214, 123, 154),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 ),
+                child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 6),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 8.0, top: 8.0),
+                              child: Text(
+                                "Menu spesial untuk",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: Text(
+                                time,
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.white),
+                              ),
+                            )
+                          ],
+                        ),
+                        Scrollbar(
+                          isAlwaysShown: true,
+                          controller: _scrollbar,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(20),
+                                    bottom: Radius.circular(20))),
+                            height: 170,
+                            margin: EdgeInsets.only(top: 4.0),
+                            padding: EdgeInsets.fromLTRB(4, 4, 4, 0),
+                            child: ListView.builder(
+                              controller: _scrollbar,
+                              itemCount: timeCheck(),
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: ((context, index) {
+                                final Food food;
+                                if (timeNow() == 'Malam ini  🌙') {
+                                  food = malam[index];
+                                } else if (timeNow() == 'Siang ini  🌞') {
+                                  food = siang[index];
+                                } else {
+                                  food = pagi[index];
+                                }
+                                return InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: ((context) => FoodView(
+                                                  foods: food,
+                                                ))));
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          width: 200,
+                                          height: 120,
+                                          child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              child: Image.asset(
+                                                food.image ?? 'images/null.jpg',
+                                                fit: BoxFit.cover,
+                                              )),
+                                        ),
+                                        Text(food.name)
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
               ),
-              const Divider(
-                height: 20,
-                thickness: 5,
-                indent: 20,
-                endIndent: 0,
-                color: Colors.white,
-              ),
-              Container(
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: ((context) => LikedView())));
-                  },
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Container(
-                                color: Color.fromARGB(255, 246, 214, 212),
-                                height: 50,
-                                width: 50,
-                                child: Icon(
-                                  Icons.favorite,
-                                  color: Colors.red,
-                                )),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text('Lihat makanan yang disukai')
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ListFoods(),
-                        ));
-                  },
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Container(
-                                color: Color.fromARGB(255, 115, 36, 218),
-                                height: 50,
-                                width: 50,
-                                child: Icon(
-                                  Icons.list_alt_sharp,
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                )),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text('Lihat menu lengkap')
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AddFoodView(),
-                        ));
-                  },
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Container(
-                                color: Colors.teal,
-                                height: 50,
-                                width: 50,
-                                child: Icon(
-                                  Icons.plus_one,
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                )),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text('Tambah menu baru')
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              )
-            ],
+            ),
           ),
-        ),
-      ],
-    ));
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+              color: Colors.teal.shade100,
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 12.0),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: Text(
+                    'Pilihan ',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                  ),
+                ),
+                const Divider(
+                  height: 20,
+                  thickness: 5,
+                  indent: 20,
+                  endIndent: 0,
+                  color: Colors.white,
+                ),
+                Container(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => LikedView())));
+                    },
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Container(
+                                  color: Color.fromARGB(255, 246, 214, 212),
+                                  height: 50,
+                                  width: 50,
+                                  child: Icon(
+                                    Icons.favorite,
+                                    color: Colors.red,
+                                  )),
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Text('Lihat makanan yang disukai')
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ListFoods(),
+                          ));
+                    },
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Container(
+                                  color: Color.fromARGB(255, 115, 36, 218),
+                                  height: 50,
+                                  width: 50,
+                                  child: Icon(
+                                    Icons.list_alt_sharp,
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                  )),
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Text('Lihat menu lengkap')
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddFoodView(),
+                          ));
+                    },
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Container(
+                                  color: Colors.teal,
+                                  height: 50,
+                                  width: 50,
+                                  child: Icon(
+                                    Icons.plus_one,
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                  )),
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Text('Tambah menu baru')
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      )),
+    );
   }
 }
 

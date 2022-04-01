@@ -25,7 +25,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
                     .instance.currentUser; //get Current User as Variable
                 await user?.sendEmailVerification();
               },
-              child: Text('Verify Now!'))
+              child: Text('Send email verification'))
         ],
       ),
     );
