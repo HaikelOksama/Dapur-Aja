@@ -1,3 +1,5 @@
+import 'package:dapur_aja/home.dart';
+import 'package:dapur_aja/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -9,29 +11,35 @@ class logHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
-      body: FutureBuilder(
-          future: Firebase.initializeApp(
-            options: DefaultFirebaseOptions.currentPlatform,
-          ),
-          builder: (context, snapshot) {
-            final user = FirebaseAuth.instance.currentUser;
-            var isUserVerified = user?.emailVerified ?? false;
-            switch (snapshot.connectionState) {
-              case ConnectionState.done:
-                if (isUserVerified) {
-                  print('Verified user');
-                  print(user?.email ?? 'bruh');
-                } else {
-                  print('Not verified');
-                  print(user?.email ?? 'bruh');
-                }
-                return CircleAvatar(child: Image.network(user?.photoURL ?? ''));
-              default:
-                return Center(child: const Text('Loading...'));
-            }
-          }),
-    );
+    return FutureBuilder(
+        future: Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform,
+        ),
+        builder: (context, snapshot) {
+          final user = FirebaseAuth.instance.currentUser;
+          final isUserVerified = user?.emailVerified ?? false;
+          switch (snapshot.connectionState) {
+            case ConnectionState.done:
+              // if (isUserVerified) {
+              //   print('Verified user');
+              //   return HomeMobile();
+              // } else {
+              //   print('Not verified');
+              //   print(user?.email ?? 'bruh');
+              //   return VerifyEmailView();
+              // }
+              return LoginView();
+            default:
+              return Center(child: const CircularProgressIndicator());
+          }
+        });
   }
+}
+
+Widget snackBar(text) {
+  return SnackBar(
+    content: Text(text),
+    width: 80,
+    duration: Duration(milliseconds: 500),
+  );
 }

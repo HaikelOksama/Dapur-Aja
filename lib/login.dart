@@ -33,73 +33,72 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Regiser')),
-      body: FutureBuilder(
-          future: Firebase.initializeApp(
-            options: DefaultFirebaseOptions.currentPlatform,
+      appBar: AppBar(
+        title: Text('Login'),
+      ),
+      body: Center(
+        child: Container(
+          width: 350,
+          child: Column(
+            children: [
+              TextField(
+                decoration: InputDecoration(
+                  hintText: 'Email ',
+                ),
+                keyboardType: TextInputType.emailAddress,
+                autocorrect: false,
+                enableSuggestions: false,
+                controller: _email,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                decoration: InputDecoration(hintText: 'Password '),
+                obscureText: true,
+                autocorrect: false,
+                enableSuggestions: false,
+                controller: _password,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                  onPressed: () async {
+                    final email = _email.text;
+                    final password = _password.text;
+                    try {
+                      final userCredential = await FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                              email: email, password: password);
+                      // await Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => logHome(),
+                      //     ));
+                      print(userCredential);
+                    } on FirebaseAuthException catch (e) {
+                      if (e.code == 'user-not-found') {
+                        print('User Not Found');
+                      } else {
+                        print('username or password is wrong');
+                      }
+                    }
+                  },
+                  child: Text('Login')),
+              SizedBox(
+                height: 20,
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/register/', (route) => false);
+                  },
+                  child: Text('Not have an Account? Register now'))
+            ],
           ),
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.done:
-                return Center(
-                  child: Container(
-                    width: 350,
-                    child: Column(
-                      children: [
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Email ',
-                          ),
-                          keyboardType: TextInputType.emailAddress,
-                          autocorrect: false,
-                          enableSuggestions: false,
-                          controller: _email,
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextField(
-                          decoration: InputDecoration(hintText: 'Password '),
-                          obscureText: true,
-                          autocorrect: false,
-                          enableSuggestions: false,
-                          controller: _password,
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        ElevatedButton(
-                            onPressed: () async {
-                              final email = _email.text;
-                              final password = _password.text;
-                              try {
-                                final userCredential = await FirebaseAuth
-                                    .instance
-                                    .signInWithEmailAndPassword(
-                                        email: email, password: password);
-                                await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => logHome(),
-                                    ));
-                                print(userCredential);
-                              } on FirebaseAuthException catch (e) {
-                                if (e.code == 'user-not-found') {
-                                  print('User Not Found');
-                                } else {
-                                  print('username or password is wrong');
-                                }
-                              }
-                            },
-                            child: Text('Login')),
-                      ],
-                    ),
-                  ),
-                );
-              default:
-                return Center(child: const Text('Loading...'));
-            }
-          }),
+        ),
+      ),
     );
   }
 }

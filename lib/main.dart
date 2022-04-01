@@ -22,6 +22,11 @@ class DapurAja extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Dapur Aja",
       theme: ThemeData(primarySwatch: Colors.teal, fontFamily: 'Montserrat'),
+      routes: {
+        '/login/': (context) => LoginView(),
+        '/register/': (context) => RegisterView(),
+        '/home/': (context) => HomeMobile()
+      },
       home: logHome(),
     );
   }

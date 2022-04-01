@@ -77,6 +77,7 @@ class _ListFoodState extends State<ListFood> {
                             child: Icon(
                               Icons.favorite,
                               color: Colors.red,
+                              size: 15,
                             ),
                           ),
                         )
